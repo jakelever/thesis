@@ -1,0 +1,16 @@
+--- 
+title: "Building and inferring knowledge using biomedical text mining"
+author: "Jake Lever"
+date: "June 2018"
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book
+documentclass: ubcthesis
+#classoption: graybox,envcountchap,sectrefs
+bibliography: [01-intro.bib,02-svd.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: jakelever/thesis
+description: "This is my PhD thesis on biomedical text mining"
+---
+  

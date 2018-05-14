@@ -1,0 +1,10 @@
+.RData
+.Rhistory
+.Rproj.user/
+_book/
+
+thesis.Rmd
+thesis.log
+thesis.pdf
+thesis.tex
+
