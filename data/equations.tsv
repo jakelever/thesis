@@ -1,0 +1,9 @@
+Algorithm	Equation
+Average Minimum~Weight (AMW)	$\frac{1}{ | c_x \cup c_z | } \sum\limits_{y \in c_x \cup c_z} { min(|c_x \cup c_y|,|c_y \cup c_z|) }$
+ANNI	$v_x . v_z$
+Arrowsmith (LTC)	$| c_x \cup c_z |$
+BITOLA	$\sum\limits_{y \in c_x \cup c_z} { | c_x \cup c_y | \times | c_y \cup c_z | }$
+FACTA+	$1 - \prod\limits_{y \in c_x \cup c_z} {1 - D(x,y)D(y,z)}$~$D(i,j) = max(P(i|j),P(j|i))$~$P(i|j) = | c_i \cup c_j | / | s_j |$
+Jaccard	$| c_x \cap c_z | / | c_x \cup c_z |$
+Preferential Attachment	$| c_x | + | c_z |$
+SVD	$(U_{k})_x \Sigma_{k} ((V_{k})_z)^T$

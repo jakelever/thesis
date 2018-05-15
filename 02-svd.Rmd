@@ -55,9 +55,27 @@ The SVD method provides scores with a range of approximately zero to one. By set
 
 ### Evaluation
 
-TABLE HERE
+```{r equations, echo=F, eval=T}
 
-Based on previous literature we selected 8 other knowledge discovery algorithms for benchmarking. These methods are based on the number of cooccurrences of terms and occurrences of individual terms. Table~\ref{tab:equations] gives an overview of the equations implemented for the scoring methods. $score(x,y)$ is the score calculated between term $x$ and $z$. $c_i$ is the set of terms that cooccur with term $i$. $v_i$ is the concept profile vector as defined in [@jelier2008literature]. FACTA+ requires knowledge of the set of sentences that contain term $i$ which is defined as $s_i$. The SVD method uses truncated versions of the decomposed matrices $U$, $\Sigma$ and $V$. $U_{k}$ is the truncated $U$ matrix with only the first $k$ columns kept. $(U_{k})_x$ is the $i$th row of the $U_{k}$ truncated matrix from the SVD decomposition. The same terminology is used for the $\Sigma$ and $V$ matrices.
+library(dplyr)
+library(kableExtra)
+
+equations <- read.table('data/equations.tsv',header=T,sep='\t', stringsAsFactors=F)
+equations$Algorithm <- gsub("~", "\n", equations$Algorithm)
+equations$Equation <- gsub("~", "\n", equations$Equation)
+
+equations %>%
+  dplyr::mutate_all(linebreak) %>%
+  knitr::kable(
+    booktabs = TRUE, escape=FALSE,
+    caption = 'Summary of methods for comparison.',
+    col.names = c('Algorithm','Equation for $score(x,z)$')
+    ) %>%
+  kable_styling()
+
+```
+
+Based on previous literature we selected 8 other knowledge discovery algorithms for benchmarking. These methods are based on the number of cooccurrences of terms and occurrences of individual terms. Table \@ref(tab:equations) gives an overview of the equations implemented for the scoring methods. $score(x,y)$ is the score calculated between term $x$ and $z$. $c_i$ is the set of terms that cooccur with term $i$. $v_i$ is the concept profile vector as defined in [@jelier2008literature]. FACTA+ requires knowledge of the set of sentences that contain term $i$ which is defined as $s_i$. The SVD method uses truncated versions of the decomposed matrices $U$, $\Sigma$ and $V$. $U_{k}$ is the truncated $U$ matrix with only the first $k$ columns kept. $(U_{k})_x$ is the $i$th row of the $U_{k}$ truncated matrix from the SVD decomposition. The same terminology is used for the $\Sigma$ and $V$ matrices.
 
 The Arrowsmith algorithm counts the number of intermediate terms also known as the linked term count (LTC). The average minimum weight (AMW) method calculates the path with minimum support between two concepts. An amalgamation of LTC-AMW, in which LTC is used to rank first and then AMW is used as a secondary ranking criterion, was identified as the top performing methods in a previous comparison of literature-based discovery ([@yetisgen2009new]). We implement LTC-AMW by simply scaling the LTC score up so that the smallest LTC score is larger than the largest AMW score and then add the AMW score and order accordingly. We also compare two successful methods from the link prediction literature, the Jaccard Index and Preferential Attachment ([@liben2007link]). Finally we compare three methods from more recent literature-based discovery methods: ANNI, BITOLA and the FACTA+ reliability measure. 
 
@@ -74,25 +92,43 @@ Recall is calculated as normal and does not require any correction. The F1-score
 ### Methods comparison
 
 
-FIGURE HERE
+```{r scores, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:scores)'}
+knitr::include_graphics("figures/figure_scores_violin.png")
+```
+
+(ref:scores) Violin plots of the different scores calculated using each method for the positive and negative test cooccurrences shown separately.
+
+The 9 methods were compared on the same data set of 2,000,000 randomly sampled positive and negative cooccurrences. In order to visualize the different scoring methods more intuitively, we show violin plots of the various scores for the positive and negative sets in Figure \@ref(fig:scores). The perfect knowledge discovery algorithm would display two separable distributions for the positive and negative sets. However, none of distribution pairs are easily separable showing that none of the algorithms are capable of completely differentiating positive and negative cooccurrences. The performance metrics for the runs of the algorithms are included in the Supplementary Materials.
 
 
-The 9 methods were compared on the same data set of 2,000,000 randomly sampled positive and negative cooccurrences. In order to visualize the different scoring methods more intuitively, we show violin plots of the various scores for the positive and negative sets in Figure~\ref{fig:scores]. The perfect knowledge discovery algorithm would display two separable distributions for the positive and negative sets. However, none of distribution pairs are easily separable showing that none of the algorithms are capable of completely differentiating positive and negative cooccurrences. The performance metrics for the runs of the algorithms are included in the Supplementary Materials.
+```{r comparison, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:comparison)'}
+knitr::include_graphics("figures/figure_comparison.png")
+```
+
+(ref:comparison) The methods evaluated using 1,000,000 cooccurrences extracted from publications after the year 2010, and 1,000,000 cooccurrences randomly generated as negative data.
+
+```{r prcurves, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:prcurves)'}
+knitr::include_graphics("figures/figure_PRcurve.png")
+```
+
+(ref:prcurves) The corresponding precision-recall curves for each method shows similar trade-offs for precision and recall for each method.
 
 
-FIGURES HERE
+In order to quantitatively compare the different sets of scores, we used the area under the corresponding precision-recall curves which are shown in Figure \@ref(fig:comparison). Notably, SVD outperforms all the other methods. This suggests that the SVD approach, which is a form of dimensionality reduction, is able to compress the knowledge into a reduced form and generalize the knowledge of the matrix. The associated precision-recall curves, shown in Figure \@ref(fig:prcurves) highlight that SVD can gain surprisingly high precision if a low recall is acceptable to the user. Arrowsmith gives the second best performance showing that the simple count of intermediate terms gives a strong measure of association between two terms.
 
-In order to quantitatively compare the different sets of scores, we used the area under the corresponding precision-recall curves which are shown in Figure~\ref{fig:comparison]. Notably, SVD outperforms all the other methods. This suggests that the SVD approach, which is a form of dimensionality reduction, is able to compress the knowledge into a reduced form and generalize the knowledge of the matrix. The associated precision-recall curves, shown in Figure~\ref{fig:prcurves] highlight that SVD can gain surprisingly high precision if a low recall is acceptable to the user. Arrowsmith gives the second best performance showing that the simple count of intermediate terms gives a strong measure of association between two terms.
-
-While Figure~\ref{fig:scores] suggests that FACTA+ does have different distributions for the positive and negative cooccurrences, the performance shown in Figure~\ref{fig:comparison] is surprisingly low. Further analysis showed FACTA+ predicts associations between many extremely rare terms with high probability, a result that disagrees with all other scoring methods. For example, the terms "discorhabdin Y" and "aspernidine A" are predicted to be associated with a probability of 1.0. However both of them only appear in a single sentence each. Given the extreme rarity of these terms, this is a very weak association and likely not helpful. They share a single intermediate term: "alkaloids" that appears in 32,749 sentences, including the single sentences that contain the rare terms. The high probability score is due to the max function used to combine the conditional probabilities $P(V|W)$ and $P(W|V)$ to calculate $D(V,W)$. The conditional probability $P(V|W)$ represents the probability of one term $V$ appearing in a sentence that also contains term $W$. Given a common term $V$ (e.g. "alkaloids") that occurs in a high proportion of the sentences that a rare term $W$ (e.g. "discorhabdin Y") appears, $P(V|W)$ will be very large and $P(W|V)$ will be extremely small. The max value will always use $P(V|W)$ and these high values skew the results.
+While Figure \@ref(fig:scores) suggests that FACTA+ does have different distributions for the positive and negative cooccurrences, the performance shown in Figure \@ref(fig:comparison) is surprisingly low. Further analysis showed FACTA+ predicts associations between many extremely rare terms with high probability, a result that disagrees with all other scoring methods. For example, the terms "discorhabdin Y" and "aspernidine A" are predicted to be associated with a probability of 1.0. However both of them only appear in a single sentence each. Given the extreme rarity of these terms, this is a very weak association and likely not helpful. They share a single intermediate term: "alkaloids" that appears in 32,749 sentences, including the single sentences that contain the rare terms. The high probability score is due to the max function used to combine the conditional probabilities $P(V|W)$ and $P(W|V)$ to calculate $D(V,W)$. The conditional probability $P(V|W)$ represents the probability of one term $V$ appearing in a sentence that also contains term $W$. Given a common term $V$ (e.g. "alkaloids") that occurs in a high proportion of the sentences that a rare term $W$ (e.g. "discorhabdin Y") appears, $P(V|W)$ will be very large and $P(W|V)$ will be extremely small. The max value will always use $P(V|W)$ and these high values skew the results.
 
 The previous comparison analysis ([@yetisgen2009new]) concluded that the LTC-AMW was the best knowledge discovery method. Our analysis shows the LTC-AMW performs similarly to the Arrowsmith which is equivalent to the linked term count (LTC). This suggests that the improvement of LTC-AMW over AMW previously shown is based entirely on the linked term count and that AMW doesn't contribute at all.
 
 ### Predictions over time
 
-FIGURE HERE
+```{r yearbyyear, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:yearbyyear)'}
+knitr::include_graphics("figures/figure_yearByYear.png")
+```
 
-We also explored predictions for novel cooccurrences that appear in publications at different time points. We again used the data set of cooccurrences from papers up to and including the year 2010. We then found all novel discoveries after this period and grouped them by the year in which they first appear. There were on average 10.9 million novel cooccurrences in each year from 2011 to 2016 inclusive. Using the optimal parameters ( $k = 132$ ) for the SVD model, we then calculate the scores using 1 million randomly sampled cooccurrences from each year (for computational reasons). Using the previously selected threshold value of 0.44 on the scores to filter out predictions, we calculate the recall values for each year. These are presented in Figure~\ref{fig:yearbyyear].
+(ref:yearbyyear) Evaluation of SVD predictions on test cooccurrences from publications further into the future using recall as the metric.
+
+We also explored predictions for novel cooccurrences that appear in publications at different time points. We again used the data set of cooccurrences from papers up to and including the year 2010. We then found all novel discoveries after this period and grouped them by the year in which they first appear. There were on average 10.9 million novel cooccurrences in each year from 2011 to 2016 inclusive. Using the optimal parameters ( $k = 132$ ) for the SVD model, we then calculate the scores using 1 million randomly sampled cooccurrences from each year (for computational reasons). Using the previously selected threshold value of 0.44 on the scores to filter out predictions, we calculate the recall values for each year. These are presented in Figure \@ref(fig:yearbyyear).
 
 The model is best able to predict cooccurrences in the year immediately after the data set ends (2011). The recall then decreases each year. This means that novel cooccurrences that appear further in the future are harder to predict. This result makes sense as a large proportion of next year's discoveries will be based closely on existing discoveries. This could be a new drug tested on a similar disease to the current use of the drug or a different member of a gene family being associated with the same disease. However, cooccurrences further into the future are based on more complicated interpretations of the current research or more likely, new research that has yet to be published.
 
@@ -122,9 +158,13 @@ There are many general terms in the UMLS word lists, such as "Local Anesthetic",
 
 The evaluation approach of making predictions using a training set and comparing predictions to a test set (as previously used by [@yetisgen2009new]) does have several limitations. The most important for a knowledge discovery algorithm is that many of the predictions deemed as false positives may prove to be true positives as new research is published. This limitation is hard to overcome. Knowledge base completion algorithms make use of a ranking evaluation where the ranking of randomly sampled known positive associations within the full set of predictions is calculated (as used in [@lin2015learning]). This is used to compare systems and avoids the problem of false positives but is also very challenging to interpret correctly. By using a training/test split approach, the associated metrics of recall and precision give a lower limit to the performance of each system which is easier to interpret. However a testing methodology that avoids the issue of negative data really being positive data (that will appear in future publications) but is also easy to interpret remains an open problem.
 
-FIGURE HERE
+```{r predictionscomparison, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:predictionscomparison)'}
+knitr::include_graphics("figures/figure_predictionscomparison.png")
+```
 
-While the SVD method clearly outperforms the other methods, an obvious question is whether the different systems make similar predictions. Figure~\ref{fig:predictionscomparison] examines the overlap of top performing systems. LTC-AMW and Arrowsmith give very similar predictions so only Arrowsmith is included. The method for deciding these set of predictions given the scores generated for each system is outlined in the Supplementary Materials. There are a core set of predictions that are shared by each method. However a large number of predictions are made by each system individually. This points towards the development of a meta-method that combines the different predictions of multiple systems and is an interesting direction for future work.
+(ref:predictionscomparison) An Upset plot showing the overlap in predictions made by the three most successful systems.
+
+While the SVD method clearly outperforms the other methods, an obvious question is whether the different systems make similar predictions. Figure \@ref(fig:predictionscomparison) examines the overlap of top performing systems. LTC-AMW and Arrowsmith give very similar predictions so only Arrowsmith is included. The method for deciding these set of predictions given the scores generated for each system is outlined in the Supplementary Materials. There are a core set of predictions that are shared by each method. However a large number of predictions are made by each system individually. This points towards the development of a meta-method that combines the different predictions of multiple systems and is an interesting direction for future work.
 
 Finally, it is worthwhile to note that our decision to focus on sentence level cooccurrence, as opposed to abstract level cooccurrence, was based on reducing potential incorrect associations. These happen between terms that cooccur but do not have any real biological relationship. By increasing the amount of text within which a cooccurrence can happen (e.g. to a full abstract), there are likely many more incorrect associations. However to check that this decision didn't bias out results, we reran the entire analysis pipeline using abstract-level cooccurrences. In this case a cooccurrence occurs when two terms appear in the same abstract. The results (shown in the Supplementary Materials) show a similar pattern to the sentence-level results and that SVD is the best performing system for this type of cooccurrence.
 
