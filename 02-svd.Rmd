@@ -92,7 +92,7 @@ Recall is calculated as normal and does not require any correction. The F1-score
 ### Methods comparison
 
 
-```{r scores, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:scores)'}
+```{r scores, echo=F, eval=T, out.width='90%', fig.align='center', fig.cap='(ref:scores)'}
 knitr::include_graphics("figures/figure_scores_violin.png")
 ```
 
@@ -101,13 +101,13 @@ knitr::include_graphics("figures/figure_scores_violin.png")
 The 9 methods were compared on the same data set of 2,000,000 randomly sampled positive and negative cooccurrences. In order to visualize the different scoring methods more intuitively, we show violin plots of the various scores for the positive and negative sets in Figure \@ref(fig:scores). The perfect knowledge discovery algorithm would display two separable distributions for the positive and negative sets. However, none of distribution pairs are easily separable showing that none of the algorithms are capable of completely differentiating positive and negative cooccurrences. The performance metrics for the runs of the algorithms are included in the Supplementary Materials.
 
 
-```{r comparison, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:comparison)'}
+```{r comparison, echo=F, eval=T, out.width='90%', fig.align='center', fig.cap='(ref:comparison)'}
 knitr::include_graphics("figures/figure_comparison.png")
 ```
 
 (ref:comparison) The methods evaluated using 1,000,000 cooccurrences extracted from publications after the year 2010, and 1,000,000 cooccurrences randomly generated as negative data.
 
-```{r prcurves, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:prcurves)'}
+```{r prcurves, echo=F, eval=T, out.width='90%', fig.align='center', fig.cap='(ref:prcurves)'}
 knitr::include_graphics("figures/figure_PRcurve.png")
 ```
 
@@ -122,7 +122,7 @@ The previous comparison analysis ([@yetisgen2009new]) concluded that the LTC-AMW
 
 ### Predictions over time
 
-```{r yearbyyear, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:yearbyyear)'}
+```{r yearbyyear, echo=F, eval=T, out.width='90%', fig.align='center', fig.cap='(ref:yearbyyear)'}
 knitr::include_graphics("figures/figure_yearByYear.png")
 ```
 
@@ -158,7 +158,7 @@ There are many general terms in the UMLS word lists, such as "Local Anesthetic",
 
 The evaluation approach of making predictions using a training set and comparing predictions to a test set (as previously used by [@yetisgen2009new]) does have several limitations. The most important for a knowledge discovery algorithm is that many of the predictions deemed as false positives may prove to be true positives as new research is published. This limitation is hard to overcome. Knowledge base completion algorithms make use of a ranking evaluation where the ranking of randomly sampled known positive associations within the full set of predictions is calculated (as used in [@lin2015learning]). This is used to compare systems and avoids the problem of false positives but is also very challenging to interpret correctly. By using a training/test split approach, the associated metrics of recall and precision give a lower limit to the performance of each system which is easier to interpret. However a testing methodology that avoids the issue of negative data really being positive data (that will appear in future publications) but is also easy to interpret remains an open problem.
 
-```{r predictionscomparison, echo=F, eval=T, out.width='30%', fig.align='center', fig.cap='(ref:predictionscomparison)'}
+```{r predictionscomparison, echo=F, eval=T, out.width='90%', fig.align='center', fig.cap='(ref:predictionscomparison)'}
 knitr::include_graphics("figures/figure_predictionscomparison.png")
 ```
 
