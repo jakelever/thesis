@@ -1700,8 +1700,11 @@
       \@restonecolfalse
     \fi
     \chapter*{\contentsname}
+	\addcontentsline{toc}{chapter}{\contentsname}
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
+	\listoffigures
+	\listoftables
     }
 \newcommand*\l@part[2]{%
   \ifnum \c@tocdepth >-2\relax
@@ -1774,7 +1777,8 @@
     \else
       \@restonecolfalse
     \fi
-    \chapter{\listfigurename}%
+    \chapter*{\listfigurename}%
+	\addcontentsline{toc}{chapter}{\listfigurename}
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
@@ -1785,7 +1789,8 @@
     \else
       \@restonecolfalse
     \fi
-    \chapter{\listtablename}%
+    \chapter*{\listtablename}%
+	\addcontentsline{toc}{chapter}{\listtablename}
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
     }
