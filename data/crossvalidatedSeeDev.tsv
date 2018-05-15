@@ -1,0 +1,4 @@
+Metric	Fold 1	Fold 2	Average
+Recall	0.363	0.386	0.375
+Precision	0.261	0.246	0.254
+F1-score	0.303	0.301	0.302

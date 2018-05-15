@@ -1,0 +1,9 @@
+Parameter	BB3 event	SeeDev binary
+Features	unigrams~unigrams POS~bigrams of dependency path~unigrams of dependency path~path edges types~entity types~entity lemmas~entity unigrams POS~path edges types near entities~	unigrams~unigrams POS~path edges types~path edges types near entities~entity types 
+Feature Selection	No	Top 5\% 
+Use TFIDF	Yes	Yes 
+Sentence Range	0	0 
+SVM Kernel	linear	linear 
+SVM C Parameter	0.3575	1.0 (default) 
+SVM Class Weights	Auto	5 for positive and 1 for negative 
+SVM Shrinking	No	No 

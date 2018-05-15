@@ -1,0 +1,4 @@
+Metric	Entities	Relations	Mods
+Recall	0.71	0.23	0.11
+Precision	0.94	0.60	0.38
+F1-score	0.81	0.33	0.17

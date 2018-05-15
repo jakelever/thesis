@@ -1,0 +1,4 @@
+Metric	BB3 event	SeeDev binary
+Recall	0.615	0.458
+Precision	0.510	0.273
+F1-score	0.558	0.342

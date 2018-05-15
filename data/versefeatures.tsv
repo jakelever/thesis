@@ -1,0 +1,15 @@
+Feature Name	Target
+unigrams	Entire Sentence
+unigrams \& parts-of-speech	Entire Sentence
+bigrams	Entire Sentence
+skipgrams	Entire Sentence
+path edges type	Dependency Path
+unigrams	Dependency Path
+bigrams	Dependency Path
+unigrams	Each Entity
+unigrams \& parts-of-speech	Each Entity
+nearby path edge types	Each Entity
+lemmas	Each Entity
+entity types	Each Entity
+unigrams of windows	Each Entity
+is relation across sentences	N/A
