@@ -7,10 +7,23 @@ output:
   bookdown::pdf_book
 documentclass: ubcthesis
 #classoption: graybox,envcountchap,sectrefs
-bibliography: [01-intro.bib,02-svd.bib,03-versekindred.bib]
+#bibliography: [01-intro.bib,02-svd.bib,03-versekindred.bib]
+bibliography: thesis.bib
 biblio-style: apalike
 link-citations: yes
 github-repo: jakelever/thesis
 description: "This is my PhD thesis on biomedical text mining"
 ---
-  
+
+
+```{r bibliographyMerge, eval=T, echo=F}
+library(RefManageR)
+BibOptions(check.entries=F)
+bibfiles <- list.files(pattern = "\\.bib$")
+bibfiles <- grep("thesis.bib",bibfiles,invert=T,value=T)
+bib <- ReadBib(bibfiles[1])
+for(bibfile in bibfiles[2:length(bibfiles)])
+  bib <- bib + ReadBib(bibfile)
+
+WriteBib(bib, file='thesis.bib',check=F)
+```
