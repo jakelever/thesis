@@ -23,7 +23,29 @@ bibfiles <- list.files(pattern = "\\.bib$")
 bibfiles <- grep("thesis.bib",bibfiles,invert=T,value=T)
 bib <- ReadBib(bibfiles[1])
 for(bibfile in bibfiles[2:length(bibfiles)])
-  bib <- bib + ReadBib(bibfile)
+  bib <- suppressWarnings(suppressMessages(merge(bib,ReadBib(bibfile))))
 
-WriteBib(bib, file='thesis.bib',check=F)
+suppressWarnings(suppressMessages(WriteBib(bib, file='thesis.bib',check=F)))
 ```
+
+# List of Abbreviations {-}
+
+```{r abbreviations, eval=T, echo=F}
+library(kableExtra)
+library(dplyr)
+abbreviations <- read.table('data/abbreviations.tsv',sep='\t',comment='')
+
+knitr::kable(abbreviations,
+  booktabs = TRUE, escape=FALSE,
+  col.names = c('Short','Long')
+  )
+```
+
+
+# Acknowledgements {-}
+
+Thanks everyone
+
+# Dedication {-}
+
+To Gromit (and Wallace)

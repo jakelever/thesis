@@ -1448,7 +1448,8 @@
   \else
     \@makeschapterhead{#1}%
     \@afterheading
-  \fi}
+  \fi
+  \addcontentsline{toc}{chapter}{\@fmttocentry{#1}}}
 \def\@makeschapterhead#1{%
   \vspace*{\chapterbeforeskip}%
   {\parindent \z@
@@ -1700,11 +1701,10 @@
       \@restonecolfalse
     \fi
     \chapter*{\contentsname}
-	\addcontentsline{toc}{chapter}{\contentsname}
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
-	\listoffigures
 	\listoftables
+	\listoffigures
     }
 \newcommand*\l@part[2]{%
   \ifnum \c@tocdepth >-2\relax
@@ -1778,7 +1778,6 @@
       \@restonecolfalse
     \fi
     \chapter*{\listfigurename}%
-	\addcontentsline{toc}{chapter}{\listfigurename}
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
@@ -1790,7 +1789,6 @@
       \@restonecolfalse
     \fi
     \chapter*{\listtablename}%
-	\addcontentsline{toc}{chapter}{\listtablename}
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
     }
@@ -1832,7 +1830,6 @@
       \else
         \chapter*{\bibname}%
         \chapterstarmark{\bibname}%
-        \addcontentsline{toc}{chapter}{\@fmttocentry{\bibname}}%
       \fi%
     \fi%
   }
