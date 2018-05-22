@@ -6,6 +6,7 @@ site: bookdown::bookdown_site
 output:
   bookdown::pdf_book
 documentclass: ubcthesis
+classoption: oneside
 #classoption: graybox,envcountchap,sectrefs
 #bibliography: [01-intro.bib,02-svd.bib,03-versekindred.bib]
 bibliography: thesis.bib
@@ -28,7 +29,7 @@ for(bibfile in bibfiles[2:length(bibfiles)])
 suppressWarnings(suppressMessages(WriteBib(bib, file='thesis.bib',check=F)))
 ```
 
-# List of Abbreviations {-}
+# List of Abbreviations
 
 ```{r abbreviations, eval=T, echo=F}
 library(kableExtra)
@@ -42,10 +43,12 @@ knitr::kable(abbreviations,
 ```
 
 
-# Acknowledgements {-}
+# Acknowledgements
 
 Thanks everyone
 
-# Dedication {-}
+# Dedication
 
 To Gromit (and Wallace)
+
+\mainmatter

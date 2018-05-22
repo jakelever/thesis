@@ -240,7 +240,7 @@
 \institution{The University of British Columbia}
 \institutionaddress{Vancouver}
 \department{Bioinformatics}
-\program{(Bioinformatics)}
+\program{Bioinformatics}
 \faculty{The Faculty of Graduate and Postdoctoral Studies}
 \copyrighttext{\copyright\ \@author\ \@copyrightyear}
 \copyrightnotice{All rights reserved.  This work may not be\\
@@ -1448,8 +1448,7 @@
   \else
     \@makeschapterhead{#1}%
     \@afterheading
-  \fi
-  \addcontentsline{toc}{chapter}{\@fmttocentry{#1}}}
+  \fi}
 \def\@makeschapterhead#1{%
   \vspace*{\chapterbeforeskip}%
   {\parindent \z@
@@ -1700,7 +1699,7 @@
     \else
       \@restonecolfalse
     \fi
-    \chapter*{\contentsname}
+    \chapter{\contentsname}
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
 	\listoftables
