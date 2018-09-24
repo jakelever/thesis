@@ -1,0 +1,10 @@
+Method	Run-time (h:m:s)	RAM usage (GB)
+AMW	0:53:15	43.3
+ANNI	9:52:13	347.0
+Arrowsmith	0:12:58	14.8
+BITOLA	0:51:49	43.3
+FACTA\texttt{+}	1:30:01	43.4
+Jaccard	0:46:18	14.8
+LTC-AMW	0:52:22	43.3
+Preferential Attachment	0:06:45	14.8
+SVD	0:07:32	7.8

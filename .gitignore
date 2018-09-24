@@ -10,6 +10,8 @@ thesis.log
 thesis.pdf
 thesis.tex
 thesis.bib
+thesis.knit.md
+thesis.utf8.md
 
 cancermine_unfiltered.tsv
 cancermine_sentences.tsv

@@ -1,0 +1,4 @@
+Method	Run-time (h:m:s)	RAM usage (GB)
+ANNI Vector Generation	2:31:06	5.8
+SVD (with publications up to 2009)	6:21:10	14.8
+SVD (with publications up to 2010)	6:09:27	15.6

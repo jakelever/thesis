@@ -1,5 +1,5 @@
 --- 
-title: "Building and inferring knowledge using biomedical text mining"
+title: "Building and inferring knowledge bases using biomedical text mining"
 author: "Jake Lever"
 date: "June 2018"
 site: bookdown::bookdown_site

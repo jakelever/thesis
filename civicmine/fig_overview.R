@@ -34,7 +34,7 @@ paper.cancerCount <- length(unique(civicmineQuadsWithPublications$cancer_normali
 paper.geneCount <- length(unique(civicmineQuadsWithPublications$gene_normalized))
 paper.drugCount <- length(unique(civicmineQuadsWithPublications$drug_normalized))
 paper.sentenceCount <- length(unique(civicmine$sentence))
-paper.multiCitationCount <- sum(civicmineQuadsWithCounts$freq==1)
+paper.multiCitationCount <- sum(civicmineQuadsWithCounts$freq>1)
 paper.multiCitationPerc <- round(100*paper.multiCitationCount/paper.biomarkerCount,1)
 
 paper.mentionCount <- prettyNum(paper.mentionCount,big.mark=",")
