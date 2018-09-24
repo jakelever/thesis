@@ -10,3 +10,11 @@ thesis.log
 thesis.pdf
 thesis.tex
 thesis.bib
+
+cancermine_unfiltered.tsv
+cancermine_sentences.tsv
+cancermine_collated.tsv
+
+civicmine_conservative.tsv
+gene_with_protein_product.txt
+nightly-ClinicalEvidenceSummaries.tsv
