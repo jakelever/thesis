@@ -17,7 +17,7 @@ Previous systems for relation and event extraction have taken two main approache
 
 We will first present the Vancouver Event and Relation System for Extraction (VERSE) for the BB3 event subtask, the SeeDev binary subtask and the Genia Event subtask. Utilising a feature-based approach, VERSE builds on the ideas of the TEES system. It offers control over the exact semantic features to use for classification, allows feature selection to reduce the size of feature vectors and uses a stochastic optimisation strategy with k-fold cross-validation to identify the best parameters. We examine the competitive results for the various subtasks and also analyse VERSE's capability to predict relations across sentence boundaries.
 
-The VERSE method came first in the BB3 event subtask and third in the SeeDev binary subtask in the BioNLP Shared Task 2016. An analysis of the two systems that outperformed VERSE in the SeeDev subtask points to interesting directions for further development. The SeeDev subtask differs greatly from the BB3 subtask as there are 24 relation types compared to only 1 in BB3 and the training set size for each relation is drastically smaller. The LitWay approach, which came first, uses a hybrid approach of rule-based and vector-based [@li2016litway]. For "simpler" relations, defined using a custom list, a rule-based approach is used using a predefined set of patterns. The UniMelb approach created individual classifiers for each relation type and was able to predict multiple relations for a candidate relation [@panyam2016seedev]. This approach of treating relation types differently suggests that there may be large differences in how a relation should be treated in terms of the linguistic cues used to identify it and the best algorithm approach to identify it.
+The VERSE method came first in the BB3 event subtask and third in the SeeDev binary subtask in the BioNLP Shared Task 2016. An analysis of the two systems that outperformed VERSE in the SeeDev subtask points to interesting directions for further development. The SeeDev subtask differs greatly from the BB3 subtask as there are 24 relation types compared to only 1 in BB3 and the training set size for each relation is drastically smaller. The LitWay approach, which came first, uses a hybrid approach of rule-based and vector-based [@li2016litway]. For "simpler" relations, defined using a custom list, a rule-based approach uses a predefined set of patterns. The UniMelb approach created individual classifiers for each relation type and was able to predict multiple relations for a candidate relation [@panyam2016seedev]. This approach of treating relation types differently suggests that there may be large differences in how a relation should be treated in terms of the linguistic cues used to identify it and the best algorithm approach to identify it.
 
 ### Kindred
 
@@ -49,7 +49,7 @@ knitr::include_graphics("figures/candidates.png")
 
 ### Text processing
 
-VERSE can accept input in the standard BioNLP-ST format or the PubAnnotation JSON format [@kim2012pubannotation]. Both formats are standoff, as they contain the text and annotations separately. The annotations describe entities in the text as spans of text and relations and modifications of these entities.
+VERSE can accept input in the standard BioNLP-ST format or the PubAnnotation JSON format [@kim2012pubannotation]. The annotations describe entities in the text as spans of text and relations and modifications of these entities.
 
 The input files for the shared subtasks are initially processed using the Stanford CoreNLP toolset. The texts are split into sentences and tokenized. Parts-of-speech and lemmas are identified and a dependency parse is generated for each sentence. CoreNLP also returns the exact positions of each token. Using this data, an interval tree is created to identify intersections of text with entities described in the associated annotation. The specific sentence and locations of each associated word are then stored for each entity. Relations and modifications described in the associated annotations are also loaded, retaining information on which entities are involved. 
 
@@ -59,7 +59,7 @@ For easier interoperability, the text parsing code was developed in Jython [@dev
 
 ### Candidate generation
 
-For all three classifications steps (entities, relations and modifications), the same machine learning framework is used. All possibles candidates are generated for entities, relations or modifications. For relations, this means all pairs of entities are found (within a certain sentence range). For the training step, the candidates are associated with a known class (i.e. the type of relation), or the negative class if the candidate is not annotated in the training set. For testing, the classes are unknown. Candidates can contain one argument (for entity extraction and modification) or two arguments (for relation extraction). These arguments are stored as references to sentences and the indices of the associated words.
+For all three classifications steps (entities, relations and modifications), the same machine learning framework is used. All possible candidates are generated for entities, relations or modifications. For relations, this means all pairs of entities are found (within a certain sentence range). For the training step, the candidates are associated with a known class (i.e. the type of relation), or the negative class if the candidate is not annotated in the training set. For testing, the classes are unknown. Candidates can contain one argument (for entity extraction and modification) or two arguments (for relation extraction). These arguments are stored as references to sentences and the indices of the associated words.
 
 
 #### Entity extraction
@@ -268,7 +268,7 @@ Kindred gives easy access to the data from the most recent BioNLP Shared Task. B
 
 ### API
 
-One of the main goals of Kindred is to open up the internal functionality of a relation extraction system to other developers. The authors are keenly aware that their specific interest in relation extraction, in order to build knowledge bases related to cancer, differs from other researchers. With this in mind, the API is designed to give easy access to the different modules of Kindred that may be used independently. For instance, the candidate builder or vectorizer could easily be integrated with functionality from other Python packages, which would allow for other machine learning algorithms or deep learning techniques to be tested. Other parsers could easily be integrated and tested with the other parts of the Kindred in order to understand how the parser performance affects the overall performance of the system. We hope that this ease-of-use will encourage others to use Kindred as a baseline method for comparison in future research.
+One of the main goals of Kindred is to open up the internal functionality of a relation extraction system to other developers. The API is designed to give easy access to the different modules of Kindred that may be used independently. For instance, the candidate builder or vectorizer could easily be integrated with functionality from other Python packages, which would allow for other machine learning algorithms or deep learning techniques to be tested. Other parsers could easily be integrated and tested with the other parts of the Kindred in order to understand how the parser performance affects the overall performance of the system. We hope that this ease-of-use will encourage others to use Kindred as a baseline method for comparison in future research.
 
 ## Results and discussion
 
@@ -356,19 +356,31 @@ suppressWarnings(crossvalidatedGE4 %>%
 
 ### Competition results
 
-The official results for the BB3 and SeeDev tasks are shown in Table \@ref(tab:finalResultsBB3SeeDev). VERSE performed well in both tasks and was ranked first for the BB3 event subtask and third for the SeeDev binary subtask. The worse performance for the SeeDev dataset may be explained by the added complexity of many additional relation and entity types.
+The official results for the BB3 and SeeDev tasks are shown in Tables \@ref(tab:kindredBB3) and \@ref(tab:kindredSeeDev). Only VERSE competed in the competition as Kindred was developed at a later date. VERSE performed well in both tasks and was ranked first for the BB3 event subtask and third for the SeeDev binary subtask. The worse performance for the SeeDev dataset may be explained by the added complexity of many additional relation and entity types.
 
 Table \@ref(tab:finalResultsGE4) shows the final results for the test set for the Genia Event subtask using the online evaluation tool. As expected, the F1-scores of the relation and modification extraction are lower for the full pipeline compared to the cross-validated results. Nevertheless, the performance is very reasonable given the more challenging dataset.
 
-```{r finalResultsBB3SeeDev, echo=F, eval=T}
-finalResultsBB3SeeDev <- read.table('data/finalResultsBB3SeeDev.tsv',header=T,sep='\t', stringsAsFactors=F)
+```{r kindredBB3, echo=F, eval=T}
+kindredBB3 <- read.table('data/kindredBB3.tsv',header=T,sep='\t', stringsAsFactors=F)
 
-suppressWarnings(finalResultsBB3SeeDev %>%
-  dplyr::mutate_all(linebreak) %>%
+suppressWarnings(kindredBB3 %>%
   knitr::kable(
     booktabs = TRUE, escape=FALSE,
-    caption = 'Final reported results for the BB3 event and SeeDev binary subtasks',
-    col.names=c('Metric','BB3 event','SeeDev binary')
+    caption = 'Cross-validated results (Fold1/Fold2) and final test set results for VERSE and Kindred predictions in Bacteria Biotope (BB3) event subtask with test set results for the top three performing tools: VERSE, TurkuNLP and LIMSI.',
+    col.names=c('Data','Precision','Recall','F1 Score')
+    ) %>%
+  kable_styling())
+
+```
+
+```{r kindredSeeDev, echo=F, eval=T}
+kindredSeeDev <- read.table('data/kindredSeeDev.tsv',header=T,sep='\t', stringsAsFactors=F)
+
+suppressWarnings(kindredSeeDev %>%
+  knitr::kable(
+    booktabs = TRUE, escape=FALSE,
+    caption = 'Cross-validated results (Fold1/Fold2) and final test set results for Kindred predictions in Seed Development (SeeDev) binary subtask with test set results for the top three performing tools: LitWay, UniMelb and VERSE.',
+    col.names=c('Data','Precision','Recall','F1 Score')
     ) %>%
   kable_styling())
 
@@ -407,32 +419,6 @@ knitr::include_graphics("figures/MultiSentence.png")
 It should be noted that at each stage of the event extraction pipeline (Figure \@ref(fig:pipeline)), additional errors can be introduced. If entities are not identified, then relations cannot be built upon them. And if entities or relations are missed, modifications cannot be predicted for them. At each stage, we targetted optimal F1-score with equal balance of precision and recall. An interesting future direction would be an exploration of different methods to reduce this, either targeting high recall (with lower precision) at each stage with a final cleanup method, or a unified approach that solves all three steps together.
 
 ### Kindred
-
-```{r kindredBB3, echo=F, eval=T}
-kindredBB3 <- read.table('data/kindredBB3.tsv',header=T,sep='\t', stringsAsFactors=F)
-
-suppressWarnings(kindredBB3 %>%
-  knitr::kable(
-    booktabs = TRUE, escape=FALSE,
-    caption = 'Cross-validated results (Fold1/Fold2) and final test set results for Kindred predictions in Bacteria Biotope (BB3) event subtask with test set results for the top three performing tools: VERSE, TurkuNLP and LIMSI.',
-    col.names=c('Data','Precision','Recall','F1 Score')
-    ) %>%
-  kable_styling())
-
-```
-
-```{r kindredSeeDev, echo=F, eval=T}
-kindredSeeDev <- read.table('data/kindredSeeDev.tsv',header=T,sep='\t', stringsAsFactors=F)
-
-suppressWarnings(kindredSeeDev %>%
-  knitr::kable(
-    booktabs = TRUE, escape=FALSE,
-    caption = 'Cross-validated results (Fold1/Fold2) and final test set results for Kindred predictions in Seed Development (SeeDev) binary subtask with test set results for the top three performing tools: LitWay, UniMelb and VERSE.',
-    col.names=c('Data','Precision','Recall','F1 Score')
-    ) %>%
-  kable_styling())
-
-```
 
 In order to show the efficacy of Kindred, we evaluate the performance on the BioNLP 2016 Shared Task data for the BB3 event extraction subtask and the SeeDev binary relation subtask. Parameter optimization was used for BB3 subtask but not for the SeeDev subtask which used the default set of feature types. Both tasks used a single multiclass classifier. Tables \@ref(tab:kindredBB3) and \@ref(tab:kindredSeeDev) shows both the cross-validated results using the provided training/development split as well as the final results for the test set.
 
