@@ -252,6 +252,10 @@
 \newcommand*{\submitdate}[1]{\gdef\@submitdate{#1}}
 \copyrightyear{\number\year}
 \submitdate{\today}
+\submitdate{%
+   \ifcase \month\or January\or February\or March\or April\or May\or June\or July\or
+    August\or September\or October\or November\or December\fi \space \number\year}
+
 \newcommand{\UBCT@signatures}
 
 \newcommand{\@signature}[3]{
@@ -1776,7 +1780,7 @@
     \else
       \@restonecolfalse
     \fi
-    \chapter*{\listfigurename}%
+    \chapter{\listfigurename}%
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
@@ -1787,7 +1791,7 @@
     \else
       \@restonecolfalse
     \fi
-    \chapter*{\listtablename}%
+    \chapter{\listtablename}%
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
     }
@@ -1829,6 +1833,7 @@
       \else
         \chapter*{\bibname}%
         \chapterstarmark{\bibname}%
+        \addcontentsline{toc}{chapter}{\@fmttocentry{\bibname}}%
       \fi%
     \fi%
   }
