@@ -1,0 +1,7 @@
+Data	Precision	Recall	F1 Score
+Fold 1	0.319	0.715	0.441
+Fold 2	0.460	0.684	0.550
+Kindred	0.579	0.443	0.502
+VERSE	0.510	0.615	0.558
+TurkuNLP	0.623	0.448	0.521
+LIMSI	0.388	0.646	0.485

@@ -1,0 +1,7 @@
+Data	Precision	Recall	F1 Score
+Fold 1	0.333	0.411	0.368
+Fold 2	0.255	0.393	0.309
+Kindred	0.344	0.479	0.400
+LitWay	0.417	0.448	0.432
+UniMelb	0.345	0.386	0.364
+VERSE	0.273	0.458	0.342

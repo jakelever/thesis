@@ -1,3 +1,49 @@
-IR	information retrieval
+AMW	average minimum weight
+BRCA	breast cancer
+CGC	Cancer Gene Census
+CIHR	Canadian Institutes of Health Research
+CIViC	Clinical Interpretation of Variants in Cancer
+COAD	colorectal adenocarcinoma
+CRF	continuous random fields
+CUID	concept unique identifier
+DO	Disease Ontology
+GBM	glioblastoma multiforme
+GFP	green fluorescent protein
+HCI	human-computer interaction
+HMM	hidden markov model
 IE	information extraction
+IR	information retrieval
+KBC	knowledge base construction
+LBD	literature-based discovery
+LGG	low grade glioma
+LIHC	liver hepatocellular carcinoma
+LSA	latent semantic analysis
+LSI	latent semantic indexing
+LTC	linked term count
+LUAD	lung adenocarcinoma
+MeSH	Medical Subject Headings
+MSFHR	Michael Smith Foundation for Health Research
+NCI	National Cancer Institute
 NER	named entity recognition
+NIH	National Institutes of Health
+NLM	National Library of Medicine
+NLP	natural language processing
+NSCLC	non-small-cell lung carcinoma
+OpenIE	open information extraction
+PMCOA	PubMed Central Open Access
+PMID	PubMed identifier
+POG	Personalized OncoGenomics
+PPI	protein-protein interaction
+PRAD	prostate adenocarcinoma
+RBF	radial basis function
+ROC	receiver operator characteristic
+SeeDev	Seed Development
+SQL	structured query language
+STAD	stomach adenocarcinoma
+SVD	singular value decomposition
+SVM	support vector machine
+TCGA	The Cancer Genome Atlas
+TFIDF	term frequency–inverse document frequency
+UMLS	unified medical language system
+VERSE	Vancouver Event and Relation System for Extraction 
+WGS	whole genome sequencing
