@@ -11,7 +11,7 @@ Supervised relation extraction is an important step past co-occurrences in infor
 
 Our CancerMine resource, described in Chapter 4, will benefit all cancer biology researchers as a valuable tool to understand the role of different genes in cancer. The high-precision knowledge extraction pipeline proves that single sentences do contain enough information for large-scale knowledge base construction. By examining the frequently cited gene roles, we were able to build profiles for each cancer type that can be used to find similarities between cancers and were validated by comparison to data in the Cancer Genome Atlas (TCGA) project.
 
-Finally Chapter 5 describes the CIVICmine resource designed specifically for curating information about the growing field of precision oncology and the clinical relevance of mutations in cancer. This resource will prove increasingly valuable in the coming years as more medical centres develop precision oncology programs. The methods for annotating the training data and building a classifier that can scale to PubMed provide valuable guidelines for other groups interested in building a high-precision knowledgebase in another area of biology.
+Finally Chapter 5 describes the CIVICmine resource designed specifically for curating information about the growing field of precision oncology and the clinical relevance of mutations in cancer. This resource will prove increasingly valuable in the coming years as more medical centres develop precision oncology programs. The methods for annotating the training data and building a classifier that can scale to PubMed provide valuable guidelines for other groups interested in building a high-precision knowledge base in another area of biology.
 
 ## Lessons Learnt
 
