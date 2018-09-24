@@ -1,26 +1,18 @@
 %% The following is a directive for TeXShop to indicate the main file
 
-\frontmatter
-
-\frontmatter
-
-\setcounter{page}{2}
+%\setcounter{page}{2}
 \noindent The following individuals certify that they have read,
 and recommend to the Faculty of Graduate and Postdoctoral Studies
-for acceptance, the thesis entitled:\\[1em]
-{\large \textbf{Building and inferring knowledge bases using biomedical text mining}}\\[1em]
-submitted by \textbf{Jake Lever} in partial fulfillment of the requirements for\\\\
-the degree of \textbf{Doctor of Philosophy}\\\\
-in \textbf{Bioinformatics}.%
+for acceptance, the thesis entitled:
+
+\begin{center}
+{\large \textbf{Building and inferring knowledge using biomedical text mining}}
+\end{center}
+
+submitted by \textbf{Jake Lever} in partial fulfillment of the requirements for the degree of \textbf{Doctor of Philosophy} in \textbf{Bioinformatics}.%
 \par\bigskip%
-\noindent\textbf{Examining Committee:}%
+\noindent\textbf{Supervisory Committee:}%
 \par\medskip\noindent{Steven Jones, Bioinformatics}\\\emph{Supervisor}
-\par\medskip\noindent{Inanc Birol, Bioinformatics}\\\emph{Supervisory Committee Member}
-\par\medskip\noindent{Art Cherkasov, Bioinformatics}\\\emph{Supervisory Committee Member}
-\par\medskip\noindent{Sohrab Shah, Bioinformatics}\\\emph{Supervisory Committee Member}
-\par\medskip\noindent{Unknown Person}\\\emph{University Examiner}
-\par\bigskip%
-\noindent\textbf{Additional Supervisory Committee Members:}%
 \par\medskip\noindent{Inanc Birol, Bioinformatics}\\\emph{Supervisory Committee Member}
 \par\medskip\noindent{Art Cherkasov, Bioinformatics}\\\emph{Supervisory Committee Member}
 \par\medskip\noindent{Sohrab Shah, Bioinformatics}\\\emph{Supervisory Committee Member}
@@ -28,16 +20,42 @@ in \textbf{Bioinformatics}.%
 
 \chapter{Abstract}
 
-This document provides brief instructions for using the ubcdiss.
-Note: Abstracts should generally try to avoid using acronyms.
+Biomedical researchers have the overwhelming task of keeping abreast of the latest research. This is especially true in the field of personalized cancer medicine where knowledge from different areas such as clinical trials, preclinical studies, and basic science research needs to be combined. We propose that automated text mining methods should become a commonplace tool for researchers to help them locate relevant research, assimilate it quickly and collate for hypothesis generation. To move towards this goal, we focus on extracting relations from published abstracts and full-text papers. We first explore the use of co-occurrences in sentences and develop a method for inferring new co-occurrences that can be used for hypothesis generation. We next explore more advanced relation extraction methods by developing a supervised learning method, VERSE, which won part of the BioNLP 2016 Shared Task. Our classical method outperforms a deep learning method showing its applicability to text mining problems with limited training data. We develop it further into the Kindred Python package which integrates with other biomedical text mining resources and is easily applied to other biomedical problems. Finally, we examine the applicability of these methods in personalized cancer research. The specific role of genes in different cancer types as drivers, oncogenes, and tumor suppressors is essential information when interpreting an individual cancer genome. We built CancerMine, a high-quality knowledgebase, using the Kindred classifier and annotations from a team of annotators. This allows for quantifiable comparisons of different cancer types based on the importance of different genes. The clinical relevance of cancer mutations is generally locked in the raw text of literature and was the focus of the CIViCmine project. As a collaboration with the Clinical Interpretation of Variants in Cancer (CIViC) project team, we built methods to prioritise relevant papers for curation. Through this work, we have focussed on different ways to extract structured knowledge from individual sentences in biomedical publications. The methods, guidelines, and results developed will aid biomedical text mining research and the personalized cancer treatment community.
 
 \chapter{Lay Summary}
 
-This document provides brief instructions for using the ubcdiss.
-Note: Abstracts should generally try to avoid using acronyms.
+There are too many publications for a single researcher to read. This is particularly true in cancer research where the knowledge can be spread across many journals. We develop computational methods to automatically read published papers and extract important sentences. We first look at co-occurrences, where two terms appear in the same sentence, and build a system for inferring new ones. We then build a system that, provided with enough examples, can extract the meaning from a sentence. This competed in and won a specific problem in the BioNLP Shared Task 2016 community competition. Finally, we use these methods to extract knowledge relevant for personalized cancer treatment, to understand the role of different genes in cancer, and the relevance of different mutations to clinical decisions. Our methods can be generalized to other problems in biology and our results will be kept up-to-date to remain valuable to cancer researchers and clinicians.
 
 \chapter{Preface}
 
-This document provides bRRRrief instructions for using the ubcdiss.
-Note: Abstracts should generally try to avoid using acronyms.
+All the work presented henceforth was conducted at Canada’s Michael Smith Genome Sciences Centre, part of the BC Cancer Agency, in the laboratory of Dr. Steven J.M. Jones with the collaboration of the Griffith Lab at Washington University in St Louis. I was personally funded by a Vanier Canada Graduate Scholarship, the MSFHR/CIHR Bioinformatics training program, a UBC four year fellowship and funding from the OpenMinTeD Horizon 2020 project. This work was also supported through Compute Canada infrastructure.
+
+A version of Chapter 2 has been published in the Bioinformatics journal and the citation is below. A licence to reuse the text and figures from this paper has been gained from Oxford University Press through the Copyright Clearance Center.
+
+Lever J, Gakkhar S, Gottlieb M, Rashnavadi T, Lin S, Siu C, Smith M, Jones M, Krzywinski M, Jones SJ. A collaborative filtering based approach to biomedical knowledge discovery. Bioinformatics. 2017 Sep 26.
+
+I created the experimental design, did all the analysis and wrote the full initial draft. Dr. Jones came up with the concept of the project. Early versions of the research were undertaken by Martin Krzywinski, Maia Smith, Mike Gottlieb, Celia Siu, Santina Lin and Tahereh Rashnavadi. All others contributed edits to the final manuscript.
+
+The contents of Chapter 3 have been published as two separate papers listed below. Both papers were presented at BioNLP workshops and are published as part of the ACL anthology. This anthology is made available through a Creative Commons 4.0 BY (Attribution) license which allows for reuse (https://aclanthology.coli.uni-saarland.de/faq).
+
+Lever J, Jones SJ. VERSE: Event and relation extraction in the BioNLP 2016 Shared Task. In Proceedings of the 4th BioNLP Shared Task Workshop 2016 (pp. 42-49).
+
+Lever J, Jones S. Painless Relation Extraction with Kindred. BioNLP 2017. 2017:176-83.
+
+For both these works, I was the main researcher and developed all code and analysis. These works were written entirely by myself and supervised by Dr. Jones.
+
+A version of Chapter 4 has been published on bioRxiv and will be submitted for publication in a journal. It is available with CC-BY 4.0 International license which allows sharing and adaptation.
+
+Lever, Jake, et al. "CancerMine: A literature-mined resource for drivers, oncogenes and tumor suppressors in cancer." bioRxiv (2018): 364406.
+
+I was the primary researcher for this work. Dr. Martin R. Jones and I came up with the concept and Dr. Steven Jones supervised the work. Dr. Eric Zhao and Jasleen Grewal worked on the annotation of data for this work. I developed the methods, annotated data and lead the writing efforts. All authors made edits to the manuscript.
+
+A version of Chapter 5 will be submitted for publication as:
+
+Lever J, Jones MR, Krysiak K, Danos A, Bonakdar M, Grewal J, Culibrk L, Griffith O, Griffith M, Jones SJM, Text-mining clinically relevant cancer biomarkers for curation into the CIViC database
+
+I was the lead researcher for this work. I developed the concept and experimental design for the work. All authors contributed to the writing of the paper. The work was primarily supervised by Drs Obi Griffith, Malachi Griffith, and Steven J.M. Jones. CIViC is supported by the National Cancer Institute (NCI) of the National Institutes of Health (NIH) under award number U01CA209936 to O.L.G. (with M.G. and E.R.M. as co-investigators). M.G. was supported by the NHGRI under award number R00HG007940. O.L.G. was supported by the NCI under award number K22CA188163. The authors would like to thank Compute Canada for the computational infrastructure used.
+
+The Introduction and Conclusion chapters are original work and have not been published or submitted for publication elsewhere.
+
 
