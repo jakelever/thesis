@@ -64,7 +64,7 @@ For all three classifications steps (entities, relations and modifications), the
 
 #### Entity extraction
 
-Entity extraction aims to classify individual or sets of words as a certain type of entity, given a set of training cases. Entities may contain non-contiguous words. The set of all possible combinations of words that could compose an entity is too large for the classification system. Hence VERSE filters for only combinations of words that are identified as entities in the training set.
+Entity extraction aims to classify individual or sets of words as a certain type of entity, given a set of training cases. Entities may contain non-contiguous words. The set of all possible combinations of words that could compose an entity is too large for the classification system. Hence VERSE filters for only combinations of words that are identified as entities in the training set. This means that if the term "Lake Como" is annotated as a Habitat entity in the training set, any instance of "Lake Como" will be flagged as a candidate Habitat entity. However if a term (e.g. "the River Thames") never appears as an entity in the training set, it will be ignored for all test data.
 
 #### Relation extraction
 
