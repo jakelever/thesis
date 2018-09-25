@@ -96,7 +96,7 @@ suppressWarnings(versefeatures %>%
 
 ```
 
-For each generated candidate, a variety of features (controllable through a parameter) is calculated. The features focus on characteristics of the full sentence, dependency path or individual entities. The full-set is shown in Table \@ref(tab:features). It should also be noted that a term frequency-inverse document frequency (TFIDF) transform is also an option for all bag-of-words based features.
+For each generated candidate, a variety of features (controllable through a parameter) is calculated. The features focus on characteristics of the full sentence, dependency path or individual entities. The full-set is shown in Table \@ref(tab:features). Each feature group, shown in the table, can be included or excluded with a binary flag. It should also be noted that a term frequency-inverse document frequency (TFIDF) transform is also an option for all bag-of-words based features.
 
 #### Full sentence features
 

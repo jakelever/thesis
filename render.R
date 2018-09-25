@@ -1,5 +1,6 @@
 library(bookdown)
 library(tinytex)
+library(data.table)
 
 bookdown::render_book("index.Rmd", "bookdown::pdf_book", clean = FALSE)
 bookdown::render_book("index.Rmd", "bookdown::word_document2")

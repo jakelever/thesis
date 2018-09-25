@@ -179,7 +179,7 @@ First, the annotated set of 800 sentences was split 75%/25% into a training and 
 
 ### Precision-recall Tradeoff
 
-```{r civicmineprcurves, echo=F, eval=T, fig.width=8, fig.asp=1.7,  fig.cap='(ref:civicmineprcurves)'}
+```{r civicmineprcurves, echo=F, eval=T, fig.width=8, fig.asp=1.2,  fig.cap='(ref:civicmineprcurves)'}
 grid.arrange(fig_prcurves)
 ```
 
